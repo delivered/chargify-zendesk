@@ -27,7 +27,7 @@ When no customer records are found in Chargify, then the UI will display an aler
 
 When one customer record is found in Chargify, then the UI will display basic customer information as well as a list of each subscription associated with that customer.
 
-When more than one customer records are found in Chargify, then the UI will display a menu containing each customer record. Selecting a menu item will display display basic customer information as well as a list of each subscription associated with that customer, as well as a menu item to return to the full customer menu.
+When more than one customer records are found in Chargify, then the UI will display a menu containing each customer record. Selecting a menu item will display basic customer information as well as a list of each subscription associated with that customer, as well as a menu item to return to the full customer menu.
 
 ## Contributing
 
