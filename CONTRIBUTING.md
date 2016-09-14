@@ -32,7 +32,7 @@ Please enter issues as you see fit.
 
 ## Pull Requests
 
-- **Document any change in behaviour** - Make sure the README and any other relevant documentation are kept up-to-date.
+- **Document any change in behaviour** - Make sure the README, CHANGELOG, and any other relevant documentation are kept up-to-date.
 
 - **Consider our release cycle** - We try to follow SemVer. Randomly breaking public APIs is not an option.
 
