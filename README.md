@@ -7,7 +7,7 @@ Access your Chargify subscription data from within Zendesk.
 
 ## Installation
 
-1. [Download the latest app package](https://github.com/delivered/chargify-zendesk/releases/latest).
+1. [Download the latest app package](https://github.com/delivered/chargify-zendesk/releases/latest) - File will be available in the "Downloads" section and look something like `app-YYYYMMDDHHMMSS.zip`.
 2. Browse to your Zendesk Apps Management Screen (https://{your-subdomain}.zendesk.com/agent/admin/apps/manage) - [Screenshot](https://cl.ly/010k3C3E3k1s)
 3. Click "Upload private app"
 4. Enter the name of the app - "Chargify" is recommended - [Screenshot](https://cl.ly/061o2q0l322y)
