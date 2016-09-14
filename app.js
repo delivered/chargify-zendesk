@@ -67,10 +67,16 @@
         subscription.formatted_current_period_ends_at = this.formatDateString(subscription.current_period_ends_at);
         subscription.formatted_next_assessment_at = this.formatDateString(subscription.next_assessment_at);
         subscription.formatted_total_revenue_in_dollars = this.formatMoney(subscription.total_revenue_in_dollars);
+        subscription.balance_in_dollars = subscription.balance_in_cents / 100;
+        subscription.formatted_balance_in_dollars = this.formatMoney(subscription.balance_in_dollars);
         if (subscription.product && typeof subscription.product.price_in_cents != 'undefined') {
-          console.log(subscription.product);
           subscription.product.price_in_dollars = subscription.product.price_in_cents / 100;
           subscription.product.formatted_price_in_dollars = this.formatMoney(subscription.product.price_in_dollars);
+        }
+        if (subscription.credit_card) {
+          var masked_cc = subscription.credit_card.masked_card_number;
+          subscription.credit_card.full_name = [subscription.credit_card.first_name, subscription.credit_card.last_name].join(' ').trim();
+          subscription.credit_card.last_four = masked_cc.substr(masked_cc.length - 4);
         }
         return subscription;
       }

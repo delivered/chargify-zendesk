@@ -126,6 +126,22 @@
               <td>{{this.formatted_next_assessment_at}}</td>
             </tr>
             <tr>
+              <td>Current Balance</td>
+              <td>{{this.formatted_balance_in_dollars}}</td>
+            </tr>
+            {{#if this.credit_card.full_name}}
+            <tr>
+              <td>Name on Card</td>
+              <td>{{this.credit_card.full_name}}</td>
+            </tr>
+            {{/if}}
+            {{#if this.credit_card.last_four}}
+            <tr>
+              <td>Last Four Digits on Card Number</td>
+              <td>{{this.credit_card.last_four}}</td>
+            </tr>
+            {{/if}}
+            <tr>
               <td>Referral Code</td>
               <td>{{this.referral_code}}</td>
             </tr>
