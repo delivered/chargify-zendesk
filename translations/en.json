@@ -1,0 +1,65 @@
+{
+  "app": {
+    "description": "Access your customers' Chargify data from within Zendesk.",
+    "name": "Chargify",
+    "parameters": {
+      "api_key": {
+        "label": {
+          "value": "API Key",
+          "title": "Your API key from chargify"
+        },
+        "helpText": {
+          "value": "The content of your setting will show in the app page.",
+          "title": "Text field below api_key informing user where api_key will be displayed."
+        }
+      },
+      "subdomain": {
+        "label": {
+          "value": "Subdomain",
+          "title": "Your chargify subdomain"
+        },
+        "helpText": {
+          "value": "The content of your setting will show in the app page.",
+          "title": "Text field below subdomain informing user where subdomain will be displayed."
+        }
+      }
+    }
+  },
+  "loading": "Welcome to this Sample App",
+  "fetch": {
+    "done": "Good",
+    "fail": "failed to fetch information from the server"
+  },
+  "id": "ID",
+  "email": "Email",
+  "name": "Name",
+  "role": "Role",
+  "groups": "Groups",
+  "callToActions": {
+    "all_customers": "All Customer Records",
+    "back": "Back"
+  },
+  "customerPage": {
+    "title": "Customer"
+  },
+  "searchPage": {
+    "title": "Search Results",
+    "exclamation": "Welp!",
+    "no_customers_found": "No customer data could be found."
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "api_key": {
+       "value": "API Key",
+       "title": "Your API key from chargify"
+    },
+    "subdomain": {
+       "value": "Subdomain",
+       "title": "Your chargify subdomain"
+    },
+    "instruction": {
+      "value": "Copy the command below and paste into your terminal to update app settings using a Zendesk App API that can be found in Settings > Channels > API.",
+      "title": "Instruction message asking the user to copy and paste the command below to terminal"
+    }
+  }
+}

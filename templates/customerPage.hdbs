@@ -1,0 +1,145 @@
+<div class="app_body">
+  {{#if error_message}}
+  <div class="alert alert-block">
+    <p><strong>Welp!</strong> {{error_message}}</p>
+  </div>
+  {{/if}}
+  {{#if customer}}
+  {{#if customer.has_sibling_accounts}}
+  <div>
+    <ul class="nav nav-tabs nav-stacked">
+      <li><a href="#" class="action show-search">&laquo; {{t "callToActions.all_customers"}}</a></li>
+    </ul>
+  </div>
+  {{/if}}
+  <div>
+    <h2>Customer</h2>
+    <table class="table table-striped table-hover table-condensed">
+      <tbody>
+        <tr>
+          <td>Id</td>
+          <td><a href="https://{{setting 'subdomain'}}.chargify.com/customers/{{customer.id}}" target="_blank">{{customer.id}}</a></td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>{{customer.full_name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{customer.email}}</td>
+        </tr>
+        {{#if customer.cc_emails}}
+        <tr>
+          <td>CC Emails</td>
+          <td>{{customer.cc_emails}}</td>
+        </tr>
+        {{/if}}
+        {{#if customer.phone}}
+        <tr>
+          <td>Phone</td>
+          <td>{{customer.phone}}</td>
+        </tr>
+        {{/if}}
+        {{#if customer.organization}}
+        <tr>
+          <td>Organization</td>
+          <td>{{customer.organization}}</td>
+        </tr>
+        {{/if}}
+        <tr>
+          <td>Customer Since</td>
+          <td>{{customer.formatted_portal_customer_created_at}}</td>
+        </tr>
+        {{#if customer.formatted_address}}
+        <tr>
+          <td>Shipping Address</td>
+          <td>{{customer.formatted_address}}</td>
+        </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    {{#if customer.subscriptions_loading}}
+      <h2>Subscriptions</h2>
+      <div class="well no-data">{{spinner "dotted"}}</div>
+    {{else}}
+      <h2>Subscriptions ({{customer.subscriptions.length}})</h2>
+      {{#if customer.subscriptions}}
+        {{#each customer.subscriptions}}
+        <table class="table table-striped table-hover table-condensed">
+          <tbody>
+            <tr>
+              <td>Id</td>
+              <td><a href="https://{{setting 'subdomain'}}.chargify.com/subscriptions/{{this.id}}" target="_blank">{{this.id}}</a></td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>{{this.state}}</td>
+            </tr>
+            <tr>
+              <td>Activated</td>
+              <td>{{this.formatted_activated_at}}</td>
+            </tr>
+            <tr>
+              <td>Created</td>
+              <td>{{this.formatted_created_at}}</td>
+            </tr>
+            {{#if this.cancelled_at}}
+            <tr>
+              <td>Cancelled</td>
+              <td>{{this.formatted_cancelled_at}} {{this.cancellation_method}} {{this.cancellation_message}}</td>
+            </tr>
+            {{/if}}
+            {{#if this.expires_at}}
+            <tr>
+              <td>Expires</td>
+              <td>{{this.formatted_expires_at}}</td>
+            </tr>
+            {{/if}}
+            {{#if this.trial_started_at}}
+            <tr>
+              <td>Trial</td>
+              <td>{{this.formatted_trial_started_at}} to {{ this.formatted_trial_ended_at}}</td>
+            </tr>
+            {{/if}}
+            {{#if product}}
+            <tr>
+              <td>Plan</td>
+              <td>{{this.product.handle}}</td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td>{{this.product.formatted_price_in_dollars}}/{{this.product.interval_unit}}</td>
+            </tr>
+            {{/if}}
+            <tr>
+              <td>Coupon Code</td>
+              <td>{{this.coupon_code}}</td>
+            </tr>
+            <tr>
+              <td>Current Period</td>
+              <td>{{this.formatted_current_period_started_at}} to {{ this.formatted_current_period_ends_at}}</td>
+            </tr>
+            <tr>
+              <td>Next Assessment</td>
+              <td>{{this.formatted_next_assessment_at}}</td>
+            </tr>
+            <tr>
+              <td>Referral Code</td>
+              <td>{{this.referral_code}}</td>
+            </tr>
+            <tr>
+              <td>Total Revenue</td>
+              <td>{{this.formatted_total_revenue_in_dollars}}</td>
+            </tr>
+          </tbody>
+        </table>
+        {{/each}}
+      {{else}}
+        <div class="well no-data">No subscriptions</div>
+      {{/if}}
+    {{/if}}
+  </div>
+  {{/if}}
+</div>

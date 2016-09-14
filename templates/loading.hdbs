@@ -1,0 +1,5 @@
+<div class="app_body">
+  <div class="well no-data">
+    {{spinner "dotted"}}
+  </div>
+</div>

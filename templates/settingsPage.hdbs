@@ -1,0 +1,33 @@
+<div class="app_body">
+  <div>
+    <ul class="nav nav-tabs nav-stacked">
+      <li><a href="#" class="action show-search">&laquo; {{t "callToActions.back"}}</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="alert">
+      <strong>{{t "settingsPage.api_key"}}</strong>
+      {{#if settings.api_key}}
+      {{settings.api_key}}
+      {{else}}
+      Missing
+      {{/if}}
+    </div>
+    <div class="alert">
+      <strong>{{t "settingsPage.subdomain"}}</strong>
+      {{#if settings.subdomain}}
+      {{settings.subdomain}}
+      {{else}}
+      Missing
+      {{/if}}
+    </div>
+  </div>
+  <div>
+    <span>{{t "settingsPage.instruction"}}</span>
+    <span class="code well">
+      <code>
+        curl -u {{email}}/token:{access_token} -d '{"settings": {"api_key": "your api key from chargify", "subdomain": "your chargify subdomain"}' -H "Content-Type: application/json" -X PUT https://{{uri}}/api/v2/apps/installations/{{installation_id}}.json
+      </code>
+    </span>
+  </div>
+</div>

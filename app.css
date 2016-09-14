@@ -1,0 +1,22 @@
+h2 {
+    font-size: 1em;
+}
+
+span.code {
+    margin: 10px 0;
+    display: block;
+    overflow-y: scroll;
+}
+
+.no-data {
+    text-align: center;
+    padding: 20%;
+}
+
+.customer-list li {
+    height: auto !important;
+}
+
+.customer-list li small {
+    display: block;
+}
