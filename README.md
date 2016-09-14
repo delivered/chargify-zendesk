@@ -1,5 +1,8 @@
 # Zendesk App for Chargify
 
+[![Latest Version](https://img.shields.io/github/release/delivered/chargify-zendesk.svg?style=flat-square)](https://github.com/delivered/chargify-zendesk/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+
 Access your Chargify subscription data from within Zendesk.
 
 ## Installation
