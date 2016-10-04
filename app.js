@@ -210,21 +210,26 @@
           customers: []
         };
         app.switchTo('loading');
-        app.ajax('fetchCustomersByEmail', app.getCustomerEmail())
-          .done(function (data) {
-            this.cacheChargifyCustomerSearch(data);
-            if (data.length == 1) {
-              var customer = app.buildCustomerFromChargifyCustomer(data[0]);
-              this.showCustomer(e, {customerId: customer.id});
-            } else {
-              for (var i = data.length - 1; i >= 0; i--) {
-                pageData.customers.push(
-                  app.buildCustomerFromChargifyCustomer(data[i])
-                );
+        var email = app.getCustomerEmail();
+        if (email) {
+          app.ajax('fetchCustomersByEmail', email)
+            .done(function (data) {
+              this.cacheChargifyCustomerSearch(data);
+              if (data.length == 1) {
+                var customer = app.buildCustomerFromChargifyCustomer(data[0]);
+                this.showCustomer(e, {customerId: customer.id});
+              } else {
+                for (var i = data.length - 1; i >= 0; i--) {
+                  pageData.customers.push(
+                    app.buildCustomerFromChargifyCustomer(data[i])
+                  );
+                }
+                app.switchTo('searchPage', pageData);
               }
-              app.switchTo('searchPage', pageData);
-            }
-          });
+            });
+        } else {
+          app.switchTo('searchPage', pageData);
+        }
       }
     },
 
