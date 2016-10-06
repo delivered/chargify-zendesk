@@ -2,6 +2,24 @@
 
 All Notable changes to `chargify-zendesk` will be documented in this file
 
+## 1.2.0 - 2016-10-06
+
+### Added
+- Support for Organization Sidebar based on space delimited domains attached to the given organization
+- Support for displaying subscriptions associated with a given user or ticket requester's organizations
+
+### Deprecated
+- Nothing
+
+### Fixed
+- Nothing
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
+
 ## 1.1.1 - 2016-10-04
 
 ### Added

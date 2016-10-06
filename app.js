@@ -21,9 +21,9 @@
           dataType: 'json'
         };
       },
-      fetchCustomersByEmail: function(email) {
+      fetchCustomersByQuery: function(query) {
         return {
-          url: 'https://'+this.settings.subdomain+'.chargify.com/customers.json?q='+email,
+          url: 'https://'+this.settings.subdomain+'.chargify.com/customers.json?q='+query,
           type:'GET',
           username: this.settings.api_key,
           password: 'x',
@@ -138,6 +138,37 @@
         return;
     },
 
+    getCustomerOrganizationDomains: function () {
+        var organization, user;
+
+        if (this.currentLocation() === 'ticket_sidebar') {
+          user = this.ticket().requester();
+        } else if (this.currentLocation() === 'user_sidebar') {
+          user = this.user();
+        } else if (this.currentLocation() === 'organization_sidebar') {
+          organization = this.organization();
+        }
+
+        if (organization) {
+          return organization.domains().split(' ');
+        }
+
+        if (user) {
+          var organizations = user.organizations(),
+              domains = [];
+
+          organizations.map(function (organization) {
+            organization.domains().split(' ').map(function (domain) {
+              domains.push(domain);
+            });
+          });
+
+          return domains;
+        }
+
+        return;
+    },
+
     getDomainFromURL: function(baseURI) {
       var regexResult = this.resources.DOMAIN_PATTERN.exec(baseURI);
       return regexResult[0];
@@ -207,28 +238,49 @@
         var app = this;
         var pageData = {
           title: app.I18n.t('searchPage.title'),
-          customers: []
+          customers: [],
+          expected_queries: [],
+          queries_completed: 0
         };
         app.switchTo('loading');
+
+        var displayResults = function () {
+          if (pageData.customers.length == 1) {
+            app.showCustomer(e, {customerId: pageData.customers[0].id});
+          } else {
+            app.switchTo('searchPage', pageData);
+          }
+        };
+
+        var aggregateResults = function (data) {
+          pageData.queries_completed++;
+          app.cacheChargifyCustomerSearch(data);
+          for (var i = data.length - 1; i >= 0; i--) {
+            pageData.customers.push(
+              app.buildCustomerFromChargifyCustomer(data[i])
+            );
+          }
+          if (pageData.queries_completed >= pageData.expected_queries.length) {
+            displayResults();
+          }
+        };
+
         var email = app.getCustomerEmail();
         if (email) {
-          app.ajax('fetchCustomersByEmail', email)
-            .done(function (data) {
-              this.cacheChargifyCustomerSearch(data);
-              if (data.length == 1) {
-                var customer = app.buildCustomerFromChargifyCustomer(data[0]);
-                this.showCustomer(e, {customerId: customer.id});
-              } else {
-                for (var i = data.length - 1; i >= 0; i--) {
-                  pageData.customers.push(
-                    app.buildCustomerFromChargifyCustomer(data[i])
-                  );
-                }
-                app.switchTo('searchPage', pageData);
-              }
-            });
-        } else {
-          app.switchTo('searchPage', pageData);
+          pageData.expected_queries.push(email);
+          app.ajax('fetchCustomersByQuery', email).done(aggregateResults);
+        }
+
+        var organizationDomains = app.getCustomerOrganizationDomains();
+        if (organizationDomains) {
+          organizationDomains.map(function (domain) {
+            pageData.expected_queries.push(domain);
+            app.ajax('fetchCustomersByQuery', '@' + domain).done(aggregateResults);
+          });
+        }
+
+        if (pageData.expected_queries === 0) {
+          displayResults();
         }
       }
     },

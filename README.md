@@ -19,9 +19,9 @@ Access your Chargify subscription data from within Zendesk.
 
 ## Usage
 
-After the app has been successfully installed and enabled, it will show up in the right pane of the User and Ticket views within Zendesk.
+After the app has been successfully installed and enabled, it will show up in the right pane of the User, Ticket, and Organization views within Zendesk.
 
-Upon initial load of the User Profile or Ticket, the app will search for customer records in your Chargify account associated with the User's primary email address or Ticket Requestors email address.
+Upon initial load of the User Profile, Ticket, or Organization, the app will search for customer records in your Chargify account associated with the User's primary email address, Ticket Requestors email address, or Organization email domains (prepend `@` sign before searching).
 
 When no customer records are found in Chargify, then the UI will display an alert.
 
