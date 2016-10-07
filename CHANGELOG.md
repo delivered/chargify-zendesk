@@ -2,6 +2,25 @@
 
 All Notable changes to `chargify-zendesk` will be documented in this file
 
+## 1.3.0 - 2016-10-06
+
+### Added
+- Include subdomain heading in app header with link out to chargify site
+- Include icons on external links
+- Updated footer layout
+
+### Deprecated
+- Nothing
+
+### Fixed
+- Nothing
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
+
 ## 1.2.0 - 2016-10-06
 
 ### Added

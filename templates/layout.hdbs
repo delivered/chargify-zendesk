@@ -1,12 +1,12 @@
 <header>
   <span class="logo"></span>
   <h3>{{setting "name"}}</h3>
+  <p class="site-tag dont-break-out"><a href="https://{{setting "subdomain"}}.chargify.com" target="_blank">{{setting "subdomain"}}</a></p>
 </header>
 <section data-main></section>
 <footer>
+  <p><a href="#" class="action show-settings">{{t "settingsPage.title"}}</a></p>
   <p>
-    <a href="#" class="action show-settings">{{t "settingsPage.title"}}</a>
-    &bull;
     Made with &hearts; in Chicago, IL by <a href="https://www.earthclassmail.com" target="_blank">Earth Class Mail</a>
   </p>
 </footer>

@@ -1,3 +1,4 @@
+
 h2 {
     font-size: 1em;
 }
@@ -6,6 +7,13 @@ span.code {
     margin: 10px 0;
     display: block;
     overflow-y: scroll;
+}
+
+.site-tag {
+    display: block;
+    padding: 0.35em 0 0.5em 0.1em;
+    border-top: 1px dotted #ccc;
+    font-size: 1.25em;
 }
 
 .no-data {
@@ -19,4 +27,31 @@ span.code {
 
 .customer-list li small {
     display: block;
+}
+
+.dont-break-out {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+a[href^="//"]:after,
+a[href^="http://"]:after,
+a[href^="https://"]:after {
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVElEQVR42n3PgQkAIAhEUXdqJ3dqJ3e6IoTPUSQcgj4EQ5IlUiLE0Jil3PECXhcHGBhZ8kg4hwxAu3MZeCGeyFnAXp4hqNQPnt7QL0nADpD6wHccLvnAKksq8iiaAAAAAElFTkSuQmCC");
+  margin: 0 0 0 4px;
 }
