@@ -2,6 +2,23 @@
 
 All Notable changes to `chargify-zendesk` will be documented in this file
 
+## 1.3.1 - 2016-10-09
+
+### Added
+- User organization domains will only include unique values, reducing duplicative API calls to Chargify
+
+### Deprecated
+- Nothing
+
+### Fixed
+- Users with no organization domains returning results for `/customers.json?q=@` - thanks @jmatthewpryor
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
+
 ## 1.3.0 - 2016-10-06
 
 ### Added

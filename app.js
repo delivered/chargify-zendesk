@@ -1,5 +1,19 @@
 (function() {
 
+  if (typeof Array.prototype.getUnique == 'undefined') {
+    Array.prototype.getUnique = function () {
+       var u = {}, a = [];
+       for (var i = 0, l = this.length; i < l; ++i) {
+          if(u.hasOwnProperty(this[i])) {
+             continue;
+          }
+          a.push(this[i]);
+          u[this[i]] = 1;
+       }
+       return a;
+    };
+  }
+
   return {
     resources: {
       DOMAIN_PATTERN: /[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+/,
@@ -139,7 +153,14 @@
     },
 
     getCustomerOrganizationDomains: function () {
-        var organization, user;
+        var organization, user, domains = [];
+
+        var appendDomain = function (domain) {
+          domain = (domain + '').trim();
+          if (domain.length) {
+            domains.push(domain);
+          }
+        };
 
         if (this.currentLocation() === 'ticket_sidebar') {
           user = this.ticket().requester();
@@ -150,23 +171,17 @@
         }
 
         if (organization) {
-          return organization.domains().split(' ');
+          organization.domains().split(' ').map(appendDomain);
         }
 
         if (user) {
-          var organizations = user.organizations(),
-              domains = [];
-
+          var organizations = user.organizations();
           organizations.map(function (organization) {
-            organization.domains().split(' ').map(function (domain) {
-              domains.push(domain);
-            });
+            organization.domains().split(' ').map(appendDomain);
           });
-
-          return domains;
         }
 
-        return;
+        return domains.length ? domains.getUnique() : null;
     },
 
     getDomainFromURL: function(baseURI) {
