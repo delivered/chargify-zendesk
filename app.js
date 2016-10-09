@@ -143,7 +143,8 @@
     },
 
     getCustomerOrganizationDomains: function () {
-        var organization, user;
+        var app = this;
+		var organization, user;
 
         if (this.currentLocation() === 'ticket_sidebar') {
           user = this.ticket().requester();
@@ -153,7 +154,7 @@
           organization = this.organization();
         }
 
-        if (organization && !isEmptyOrBlank(organization.domains())) {
+        if (organization && !app.isEmptyOrBlank(organization.domains())) {
           return organization.domains().split(' ');
         }
 
@@ -163,7 +164,7 @@
 
           organizations.map(function (organization) {
             organization.domains().split(' ').map(function (domain) {
-              if(!isEmptyOrBlank(domain)) {
+              if(!app.isEmptyOrBlank(domain)) {
                 domains.push(domain);
               }
             });
