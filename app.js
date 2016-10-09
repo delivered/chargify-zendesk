@@ -120,6 +120,10 @@
       return copy;
     },
 
+    isEmptyOrBlank: function(str) {
+      return (!str || 0 === str.length || 0 === str.trim().length);
+    },
+
     formatDateString: function (date_string, format) {
       format = format || this.resources.DATE_FORMAT;
       return moment(date_string).format(format);
@@ -149,7 +153,7 @@
           organization = this.organization();
         }
 
-        if (organization) {
+        if (organization && !isEmptyOrBlank(organization.domains())) {
           return organization.domains().split(' ');
         }
 
@@ -159,7 +163,9 @@
 
           organizations.map(function (organization) {
             organization.domains().split(' ').map(function (domain) {
-              domains.push(domain);
+              if(!isEmptyOrBlank(domain)) {
+                domains.push(domain);
+              }
             });
           });
 
