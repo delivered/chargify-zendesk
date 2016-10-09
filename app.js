@@ -120,6 +120,10 @@
       return copy;
     },
 
+    isEmptyOrBlank: function(str) {
+      return (!str || 0 === str.length || 0 === str.trim().length);
+    },
+
     formatDateString: function (date_string, format) {
       format = format || this.resources.DATE_FORMAT;
       return moment(date_string).format(format);
@@ -139,7 +143,8 @@
     },
 
     getCustomerOrganizationDomains: function () {
-        var organization, user;
+        var app = this;
+		var organization, user;
 
         if (this.currentLocation() === 'ticket_sidebar') {
           user = this.ticket().requester();
@@ -149,7 +154,7 @@
           organization = this.organization();
         }
 
-        if (organization) {
+        if (organization && !app.isEmptyOrBlank(organization.domains())) {
           return organization.domains().split(' ');
         }
 
@@ -159,7 +164,9 @@
 
           organizations.map(function (organization) {
             organization.domains().split(' ').map(function (domain) {
-              domains.push(domain);
+              if(!app.isEmptyOrBlank(domain)) {
+                domains.push(domain);
+              }
             });
           });
 
