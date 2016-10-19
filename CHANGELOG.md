@@ -2,6 +2,23 @@
 
 All Notable changes to `chargify-zendesk` will be documented in this file
 
+## 1.4.0 - 2016-10-19
+
+### Added
+- Link to subscription transactions - thanks @udayapitchika
+
+### Deprecated
+- Nothing
+
+### Fixed
+- Nothing
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
+
 ## 1.3.1 - 2016-10-09
 
 ### Added
