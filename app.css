@@ -21,6 +21,10 @@ span.code {
     padding: 20%;
 }
 
+.center{
+	text-align:center;
+}
+
 .customer-list li {
     height: auto !important;
 }
