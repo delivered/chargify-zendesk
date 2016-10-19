@@ -149,6 +149,11 @@
               <td>Total Revenue</td>
               <td>{{this.formatted_total_revenue_in_dollars}}</td>
             </tr>
+            <tr>
+              <td colspan="2" class="center">
+              	<a href="https://{{setting 'subdomain'}}.chargify.com/subscriptions/{{this.id}}/transactions/details" target="_blank">View Transactions</a>
+              </td>
+            </tr>              
           </tbody>
         </table>
         {{/each}}
