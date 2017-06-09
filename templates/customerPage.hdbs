@@ -153,7 +153,12 @@
               <td colspan="2" class="center">
               	<a href="https://{{setting 'subdomain'}}.chargify.com/subscriptions/{{this.id}}/transactions/details" target="_blank">View Transactions</a>
               </td>
-            </tr>              
+            </tr>
+            <tr>
+              <td colspan="2" class="center">
+              	<a href="https://{{setting 'subdomain'}}.chargify.com/subscriptions/{{this.id}}/statements" target="_blank">View Statements</a>
+              </td>
+            </tr>
           </tbody>
         </table>
         {{/each}}
