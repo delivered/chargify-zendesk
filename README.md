@@ -5,6 +5,10 @@
 
 Access your Chargify subscription data from within Zendesk.
 
+## Help Wanted
+
+This package needs an upgrade to support new vendor API: https://github.com/delivered/chargify-zendesk/issues/9
+
 ## Installation
 
 1. [Download the latest app package](https://github.com/delivered/chargify-zendesk/releases/latest) - File will be available in the "Downloads" section and look something like `app-YYYYMMDDHHMMSS.zip`.
